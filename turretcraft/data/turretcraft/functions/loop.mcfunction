@@ -1,6 +1,6 @@
 #TurretCraft
 scoreboard objectives add TurretCon dummy
-scoreboard objectives add Turrethealth dummy
+scoreboard objectives add TC_Health dummy
 scoreboard objectives add TurretBDL dummy
 scoreboard objectives add TurretBDR dummy
 scoreboard objectives add TurretRot dummy

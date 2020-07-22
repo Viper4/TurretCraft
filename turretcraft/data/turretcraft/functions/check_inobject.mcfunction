@@ -11,6 +11,8 @@ execute as @e[type=armor_stand,tag=Bullet] at @s if block ~ ~1 ~ cobweb unless e
 execute as @e[type=armor_stand,tag=Bullet] at @s if block ~ ~1 ~ redstone_wire unless entity @e[type=!item,type=!armor_stand,type=!arrow,type=!experience_orb,distance=..1] run tag @s remove InObject
 execute as @e[type=armor_stand,tag=Bullet] at @s if block ~ ~1 ~ water unless entity @e[type=!item,type=!armor_stand,type=!arrow,type=!experience_orb,distance=..1] run tag @s add Slow
 execute at @e[type=armor_stand,tag=Bullet] if block ~ ~1 ~ #impermeable run playsound block.glass.break master @a ~ ~ ~ 1 1
+execute as @e[type=armor_stand,tag=Bullet] at @s if block ~ ~1 ~ #impermeable run scoreboard players add @s TC_Health 1
+kill @e[type=armor_stand,tag=Bullet,scores={TC_Health=4}]
 execute at @e[type=armor_stand,tag=Bullet] run fill ~ ~1 ~ ~ ~1 ~ air replace #impermeable
 execute as @e[type=armor_stand,tag=Bullet] at @s positioned ~ ~1 ~ if entity @e[tag=TurretH,distance=..1] run tag @s remove InObject
 execute as @e[type=armor_stand,tag=Bullet] at @s positioned ~ ~1 ~ if entity @e[type=armor_stand,tag=TurretC,distance=..1] run tag @s remove InObject
@@ -34,16 +36,16 @@ execute as @e[type=armor_stand,tag=Bullet5,tag=!Slow,tag=!InObject,scores={TC_Ti
 execute as @e[type=armor_stand,tag=Bullet5,tag=Slow,tag=!InObject,scores={TC_Timer=101..300}] at @s run tp @s ^ ^ ^0.01
 execute at @e[tag=Bullet,tag=InObject] unless entity @e[type=!armor_stand,distance=..1] run particle large_smoke ^ ^1 ^-0.4 0.2 0.2 0.2 0.01 1
 execute at @e[tag=Bullet,tag=InObject] unless entity @e[type=!armor_stand,distance=..1] run playsound block.stone.hit master @a ~ ~ ~ 1.2 0.7
-execute as @e[type=!armor_stand,type=!player] store result score @s Turrethealth run data get entity @s Health
-execute at @e[type=armor_stand,tag=Bullet,tag=Bullet1,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s Turrethealth 12
+execute as @e[type=!armor_stand,type=!player] store result score @s TC_Health run data get entity @s Health
+execute at @e[type=armor_stand,tag=Bullet,tag=Bullet1,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s TC_Health 12
 execute at @e[type=armor_stand,tag=Bullet,tag=Bullet1,tag=InObject] run effect give @e[type=player,distance=..1,limit=1,sort=nearest] minecraft:instant_damage 1 1 true
-execute at @e[type=armor_stand,tag=Bullet,tag=Bullet2,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s Turrethealth 6
+execute at @e[type=armor_stand,tag=Bullet,tag=Bullet2,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s TC_Health 6
 execute at @e[type=armor_stand,tag=Bullet,tag=Bullet2,tag=InObject] run effect give @e[type=player,distance=..1,limit=1,sort=nearest] minecraft:instant_damage 1 0 true
-execute at @e[type=armor_stand,tag=Bullet,tag=Bullet3,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s Turrethealth 24
+execute at @e[type=armor_stand,tag=Bullet,tag=Bullet3,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s TC_Health 24
 execute at @e[type=armor_stand,tag=Bullet,tag=Bullet3,tag=InObject] run effect give @e[type=player,distance=..1,limit=1,sort=nearest] minecraft:instant_damage 1 2 true
-execute at @e[type=armor_stand,tag=Bullet,tag=Bullet4,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s Turrethealth 48
+execute at @e[type=armor_stand,tag=Bullet,tag=Bullet4,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s TC_Health 48
 execute at @e[type=armor_stand,tag=Bullet,tag=Bullet4,tag=InObject] run effect give @e[type=player,distance=..1,limit=1,sort=nearest] minecraft:instant_damage 1 3 true
-execute at @e[type=armor_stand,tag=Bullet,tag=Bullet5,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s Turrethealth 96
+execute at @e[type=armor_stand,tag=Bullet,tag=Bullet5,tag=InObject] as @e[type=!armor_stand,type=!player,distance=..1,limit=1,sort=nearest] store result entity @s Health float 1 run scoreboard players remove @s TC_Health 96
 execute at @e[type=armor_stand,tag=Bullet,tag=Bullet5,tag=InObject] run effect give @e[type=player,distance=..1,limit=1,sort=nearest] minecraft:instant_damage 1 4 true
 execute at @e[tag=Bullet,tag=InObject] if entity @e[type=!armor_stand,distance=..1] run particle block redstone_block ^ ^1 ^-0.4 0.2 0.2 0.2 0.01 2
 execute at @e[tag=Bullet,tag=InObject] if entity @e[type=!armor_stand,distance=..1] run playsound entity.player.hurt master @a ~ ~ ~ 0.6 1
