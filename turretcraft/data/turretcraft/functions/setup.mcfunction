@@ -25,7 +25,6 @@ give @a[scores={TurretPS=1}] minecraft:written_book{pages:['[{"text":"   Creatin
 #Guns
 scoreboard objectives add TC_RightClick minecraft.used:minecraft.carrot_on_a_stick
 scoreboard objectives add TC_Ammo dummy
-scoreboard objectives add TC_FireTimer dummy
 scoreboard objectives add TC_Shifting minecraft.custom:minecraft.sneak_time
 scoreboard objectives add TC_Recoil dummy
 scoreboard objectives add TC_CheckAmmo trigger
@@ -33,8 +32,6 @@ scoreboard players enable @a TC_CheckAmmo
 scoreboard players set @a[scores={TurretPS=1}] TC_Ammo 200
 scoreboard players set @a[tag=Bypass] TC_Ammo 200
 execute as @a[scores={TC_CheckAmmo=1..}] run tellraw @s [{"text":"Ammo: ","color":"gray"},{"score":{"name":"@s","objective":"TC_Ammo"},"color":"yellow"}]
-tag @a[scores={TC_RightClick=1..},tag=!BulletAnchor] add BulletAnchor
-tag @a[scores={TC_RightClick=0},tag=BulletAnchor] remove BulletAnchor
 scoreboard players set @a TC_RightClick 0
 scoreboard players set @a TC_Shifting 0
 scoreboard players set @a TC_CheckAmmo 0

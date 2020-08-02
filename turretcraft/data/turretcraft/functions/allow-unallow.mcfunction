@@ -39,8 +39,8 @@ execute at @e[type=armor_stand,tag=HostileU] run tag @e[type=!player,type=!polar
 #execute at @a[scores={TurretA=5}] as @e[type=armor-stand,distance=..3] run tag @s add Pick
 #execute at @e[type=armor_stand,tag=Pick] 
 #execute at @e[type=armor_stand,tag=TurretC] run tag @e[type=!player,distance=100..102] remove Allowed
-tellraw @a[scores={TurretA=5}] [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Entity pick","color":"blue"},{"text":", is a work in progress.","color":"gray"}]
-tellraw @a[scores={TurretA=-5}] [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Entity pick","color":"blue"},{"text":", is a work in progress.","color":"gray"}]
+tellraw @a[scores={TurretA=5}] [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Pick Entity","color":"blue"},{"text":", is a work in progress.","color":"gray"}]
+tellraw @a[scores={TurretA=-5}] [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Pick Entity","color":"blue"},{"text":", is a work in progress.","color":"gray"}]
 #Below is Entity Pick (WIP)
 #give @a[scores={TurretA=5}] minecraft:carrot_on_a_stick{HideFlags:1,Enchantments:[{id:"minecraft:protection",lvl:-1}],display:{Name:'{"text":"Entity picker","color":"blue"}'}}
 #give @a[scores={TurretA=-5}] minecraft:carrot_on_a_stick{HideFlags:1,Enchantments:[{id:"minecraft:protection",lvl:-1}],display:{Name:'{"text":"Entity picker","color":"blue"}'}}

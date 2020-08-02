@@ -1,6 +1,6 @@
 {
 	"values":[
-		"turretcraft:firing",
+		"turretcraft:bullets",
 		"turretcraft:allow-unallow",
 		"turretcraft:turret_v1",
 		"turretcraft:turret_v2",
@@ -11,6 +11,6 @@
 		"turretcraft:deserteagle",
 		"turretcraft:awp",
 		"turretcraft:m16",
-		"turretcraft:loop"
+		"turretcraft:setup"
 	]
 }
