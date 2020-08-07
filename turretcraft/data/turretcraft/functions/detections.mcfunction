@@ -14,14 +14,15 @@ execute as @e[type=armor_stand,tag=ModCrafter] at @s if block ~ ~ ~ dispenser{It
 execute at @e[type=armor_stand,tag=ModCrafter] unless block ~ ~ ~ dispenser run summon item ~-1.3 ~ ~ {Item:{id:"minecraft:repeater",Count:1b}}
 execute as @e[type=armor_stand,tag=ModCrafter] at @s unless block ~ ~ ~ dispenser run kill @s
 
-#Upgrades
-execute as @e[type=armor_stand,tag=TurretC,tag=!MaxTier] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:conduit",Count:1b,tag:{isComponent:1b}}},distance=..1,limit=1] run function turretcraft:upgrades
-
 #Turret deletion
 execute as @e[type=wither_skeleton,tag=TC] store result score @s TC_TurretRot run data get entity @s Health
 execute as @e[type=armor_stand,tag=TurretC] at @s if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run function turretcraft:turret_deletion
 execute as @e[type=armor_stand,tag=TurretC,tag=!Frame] at @s unless entity @e[type=wither_skeleton,tag=TC,distance=..1] run function turretcraft:turret_deletion
-execute as @e[tag=TC] at @s unless entity @e[tag=TurretC,distance=..1.3] run kill @s
+execute as @e[tag=TurretC,tag=!Frame] at @s unless entity @e[type=wither_skeleton,tag=TC,distance=..1.3] run kill @s
+execute as @e[tag=TC] at @s unless entity @e[tag=TurretC,distance=..1] run kill @s
+
+#Upgrades
+execute as @e[type=armor_stand,tag=TurretC,tag=!MaxTier] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:conduit",Count:1b,tag:{isComponent:1b}}},distance=..1,limit=1] run function turretcraft:upgrades
 
 #Turret firing
 execute as @e[type=armor_stand,tag=Firing] run function turretcraft:firing

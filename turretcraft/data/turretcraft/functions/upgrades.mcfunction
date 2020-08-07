@@ -1,4 +1,4 @@
-# All Vanilla commands for turret upgrades and ammo (using objective TC_AK47_Ammo)
+# All Vanilla commands for turret upgrades
 # Made by: Viper1618
 #--------------------
 
