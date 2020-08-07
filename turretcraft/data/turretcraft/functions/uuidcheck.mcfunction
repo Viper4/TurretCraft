@@ -1,5 +1,5 @@
 tag @e[tag=!Admin,tag=Owner,distance=..60] remove Owner
-scoreboard players operation @e[type=wither_skeleton,tag=TurretHealth,distance=..60] TC_UUID0 = @s TC_UUID0
+execute at @s run scoreboard players operation @e[type=wither_skeleton,tag=TurretHealth,distance=..60] TC_UUID0 = @s TC_UUID0
 scoreboard players operation @e[type=wither_skeleton,tag=TurretHealth,distance=..60] TC_UUID1 = @s TC_UUID1
 scoreboard players operation @e[type=wither_skeleton,tag=TurretHealth,distance=..60] TC_UUID2 = @s TC_UUID2
 scoreboard players operation @e[type=wither_skeleton,tag=TurretHealth,distance=..60] TC_UUID3 = @s TC_UUID3
