@@ -15,17 +15,19 @@ execute at @e[type=armor_stand,tag=ModCrafter] unless block ~ ~ ~ dispenser run 
 execute as @e[type=armor_stand,tag=ModCrafter] at @s unless block ~ ~ ~ dispenser run kill @s
 
 #Turret deletion
-execute as @e[type=wither_skeleton,tag=TC] store result score @s TC_TurretRot run data get entity @s Health
+execute as @e[type=wither_skeleton,tag=TurretHealth] store result score @s TC_TurretRot run data get entity @s Health
 execute as @e[type=armor_stand,tag=TurretC] at @s if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run function turretcraft:turret_deletion
-execute as @e[type=armor_stand,tag=TurretC,tag=!Frame] at @s unless entity @e[type=wither_skeleton,tag=TC,distance=..1] run function turretcraft:turret_deletion
-execute as @e[tag=TurretC,tag=!Frame] at @s unless entity @e[type=wither_skeleton,tag=TC,distance=..1.3] run kill @s
-execute as @e[tag=TC] at @s unless entity @e[tag=TurretC,distance=..1] run kill @s
+execute as @e[type=armor_stand,tag=TurretC,tag=!Frame] at @s unless entity @e[type=wither_skeleton,tag=TurretHealth,distance=..1] run function turretcraft:turret_deletion
+execute as @e[tag=TurretC,tag=!Frame] at @s unless entity @e[type=wither_skeleton,tag=TurretHealth,distance=..1] run kill @s
+execute as @e[tag=TC,tag=!TurretLimit] at @s unless entity @e[tag=TurretC,distance=..1.3] run kill @s
+execute as @e[tag=TurretHealth] at @s unless entity @e[tag=TurretC,distance=..1] run kill @s
 
 #Upgrades
 execute as @e[type=armor_stand,tag=TurretC,tag=!MaxTier] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:conduit",Count:1b,tag:{isComponent:1b}}},distance=..1,limit=1] run function turretcraft:upgrades
 
 #Turret firing
-execute as @e[type=armor_stand,tag=Firing] run function turretcraft:firing
+scoreboard players remove @e[type=armor_stand,tag=TurretC,tag=Firing,scores={TC_FireTimer=1..}] TC_FireTimer 1
+execute as @e[type=armor_stand,tag=TurretC,tag=Firing,scores={TC_FireTimer=0,TC_AK47_Ammo=1..}] run function turretcraft:firing
 execute as @e[type=arrow,tag=Bullet,tag=New] run function turretcraft:bullets
 scoreboard players set @e[type=armor_stand,tag=TurretC,tag=InfiniteAmmo] TC_AK47_Ammo 1337
 execute as @e[type=armor_stand,tag=TurretC,tag=!Turret3C,tag=!Turret4C] at @s if entity @e[type=item,nbt={Item:{id:"minecraft:wooden_pickaxe",Count:1b,tag:{CustomModelData:1}}},distance=..1,limit=1] run scoreboard players add @s TC_AK47_Ammo 30

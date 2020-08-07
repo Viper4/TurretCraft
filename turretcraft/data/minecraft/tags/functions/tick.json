@@ -1,7 +1,7 @@
 {
 	"values":[
-		"turretcraft:turrets",
 		"turretcraft:targets",
+		"turretcraft:turrets",
 		"turretcraft:detections",
 		"turretcraft:admin",
 		"turretcraft:reset"

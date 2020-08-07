@@ -4,20 +4,23 @@
 # please report any bugs found
 #--------------------
 
-scoreboard players add @a[tag=!MaxTurret,scores={TC_Turret=1..99}] TC_TurretRotS 1
+execute at @e[type=wither_skeleton,tag=TurretHealth,scores={TC_TurretRot=1..35}] run particle smoke ~ ~1 ~ 0 0 0 0.01 1
+execute at @a[tag=!MaxTurret,scores={TC_Turret=1..99}] unless entity @e[tag=TurretC,distance=..1] run scoreboard players add @p TC_TurretRotS 1
 execute at @a[scores={TC_Turret=-1,TC_TurretRotS=1..},tag=Owner] if entity @e[tag=TurretC,distance=..3] run scoreboard players remove @p TC_TurretRotS 1
-execute at @a run scoreboard players operation @p TC_TurretRot = @p TC_TurretRotS
-execute at @a[scores={TC_TurretRot=1..}] run scoreboard players operation @p TC_TurretRot -= @e[type=armor_stand,tag=TurretCraft] TC_TurretRot
-execute at @a[tag=!MaxTurret,scores={TC_Turret=1}] run summon item_frame ~ ~ ~ {Tags:["Turret1","Frame"]}
-execute at @a[tag=!MaxTurret,scores={TC_Turret=2}] run summon item_frame ~ ~ ~ {Tags:["Turret2","Frame"]}
-execute at @a[tag=!MaxTurret,scores={TC_Turret=3}] run summon item_frame ~ ~ ~ {Tags:["Turret3","Frame"]}
-execute at @a[tag=!MaxTurret,scores={TC_Turret=4}] run summon item_frame ~ ~ ~ {Tags:["Turret4","Frame"]}
-tag @a[tag=!MaxTurret,scores={TC_TurretRot=0,TC_TurretRotS=1..}] add MaxTurret
+execute at @a[scores={TC_TurretRotS=1..,TC_Turret=1..99}] run scoreboard players operation @p TC_TurretRot = @p TC_TurretRotS
+execute at @a[scores={TC_TurretRotS=1..,TC_Turret=1..99}] run scoreboard players operation @p TC_TurretRot -= @e[type=armor_stand,tag=TurretLimit] TC_TurretRot
+execute at @a[tag=!MaxTurret,scores={TC_Turret=1}] unless entity @e[tag=TurretC,distance=..1] run summon item_frame ~ ~ ~ {Tags:["Turret1","Frame"]}
+execute at @a[tag=!MaxTurret,scores={TC_Turret=2}] unless entity @e[tag=TurretC,distance=..1] run summon item_frame ~ ~ ~ {Tags:["Turret2","Frame"]}
+execute at @a[tag=!MaxTurret,scores={TC_Turret=3}] unless entity @e[tag=TurretC,distance=..1] run summon item_frame ~ ~ ~ {Tags:["Turret3","Frame"]}
+execute at @a[tag=!MaxTurret,scores={TC_Turret=4}] unless entity @e[tag=TurretC,distance=..1] run summon item_frame ~ ~ ~ {Tags:["Turret4","Frame"]}
+execute at @a[tag=!MaxTurret,scores={TC_Turret=1..99}] as @e[tag=TurretC,distance=..1,limit=1,sort=nearest] run tellraw @p [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Can't spawn turret inside ","color":"red"},{"selector":"@s"},{"text":".","color":"red"}]
+tag @a[tag=!MaxTurret,scores={TC_TurretRot=0..,TC_TurretRotS=1..}] add MaxTurret
 tag @a[tag=MaxTurret,scores={TC_TurretRot=..-1}] remove MaxTurret
-tellraw @a[tag=MaxTurret,scores={TC_Turret=1..99}] [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Reached turret limit of ","color":"red"},{"score":{"name":"@e[type=armor_stand,tag=TurretCraft]","objective":"TC_TurretRot"},"color":"red"},{"text":" set by Admin.","color":"red"}]
+tag @a[tag=MaxTurret,scores={TC_TurretRot=0,TC_TurretRotS=0}] remove MaxTurret
+tellraw @a[tag=MaxTurret,scores={TC_Turret=1..99}] [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Reached turret limit of ","color":"red"},{"score":{"name":"@e[type=armor_stand,tag=TurretLimit]","objective":"TC_TurretRot"},"color":"red"},{"text":" set by Admin.","color":"red"}]
 
 execute as @e[type=armor_stand,tag=TurretC,tag=!Frame,tag=Firing] run tag @s remove Firing
-execute as @e[type=armor_stand,tag=TurretC,tag=!Frame] run function turretcraft:uuidcheck
+execute as @e[type=armor_stand,tag=TurretC,tag=!Frame] at @s if entity @e[type=!item,type=!experience_orb,type=!arrow,type=!snowball,tag=!TC,tag=!Admin,distance=1..60] run function turretcraft:uuidcheck
 execute at @a[tag=!Owner,scores={TC_Turret=-3..-1}] if entity @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] run tellraw @p [{"text":"[TurretCraft]","color":"dark_green"},{"text":" You do not own ","color":"red"},{"selector":"@e[type=armor_stand,distance=..3,tag=TurretC,limit=1,sort=nearest]"},{"text":".","color":"red"}]
 execute at @a[scores={TC_Turret=-3..-1}] unless entity @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] run tellraw @p [{"text":"[TurretCraft]","color":"dark_green"},{"text":" No Turret found, stand within 3 blocks of desired turret.","color":"red"}]
 execute at @a[tag=!Owner] unless entity @p[scores={TC_Target=0}] if entity @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] run tellraw @p [{"text":"[TurretCraft]","color":"dark_green"},{"text":" You do not own ","color":"red"},{"selector":"@e[type=armor_stand,distance=..3,tag=TurretC,limit=1,sort=nearest]"},{"text":".","color":"red"}]
@@ -31,11 +34,10 @@ tag @a[tag=Admin,tag=!Owner] add Owner
 		execute as @e[type=minecraft:armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-5}] run data merge entity @s {Invulnerable:1b,NoGravity:1b,ShowArms:1b,ArmorItems:[{},{id:"iron_leggings",Count:1b},{id:"iron_chestplate",Count:1b},{id:"minecraft:iron_block",Count:1b}],HandItems:[{},{}],DisabledSlots:2039583,Pose:{Head:[180f,0f,0f],LeftLeg:[0f,0f,10f],RightLeg:[0f,0f,350f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]},Tags:["TurretC","Turret1C","TC","Frame","V1"],CustomName:'[{"text":"Sniper ","color":"gray"},{"text":"Tier 1","color":"white"}]',CustomNameVisible:1b}
 		execute at @e[type=minecraft:armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-4}] run summon minecraft:armor_stand ^ ^-0.35 ^-0.05 {Marker:1b,Invisible:1b,NoGravity:1b,ArmorItems:[{},{},{},{id:"minecraft:player_head",Count:1b,tag:{SkullOwner:{Id:[I;-1113502024,843466295,-1803561648,-487382137],Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZkMTVlNzJhY2YyMTliYzFkYThhZTc2ODZmNGY4M2M3NzNhZGNiNGY4ZmFjYzg3Y2JiZDQzZWU3OTA1N2YzIn19fQ=="}]}}}}],Marker:1b,HandItems:[{},{}],DisabledSlots:2039583,Tags:["TurretH","TC"],Pose:{Head:[0.1f,0.1f,0.1f]}}
 		execute at @e[type=minecraft:armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-4}] run summon minecraft:armor_stand ~ ~1.2 ~ {DisabledSlots:2039583,Marker:1b,Small:1b,Invisible:1b,NoGravity:1b,Tags:["BulletAnchor","TC"]}
-		execute at @e[type=armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-4}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:sniper",Team:"TC_NoColl",NoGravity:1b,Silent:1b,NoAI:1b,Health:120f,Tags:["TC"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:120}]}
-		execute at @e[type=armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-4}] run scoreboard players set @e[type=wither_skeleton,tag=TC,distance=..1,limit=1,sort=nearest] TC_TurretRotS 120
-		execute as @e[type=armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-4}] run tag @s remove Frame
+		execute at @e[type=armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-4}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:sniper",NoGravity:1b,Silent:1b,NoAI:1b,Health:120f,Tags:["TurretHealth","Neutral"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:120}]}
+		execute at @e[type=armor_stand,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-4}] run scoreboard players set @e[type=wither_skeleton,tag=TurretHealth,distance=..1,limit=1,sort=nearest] TC_TurretRotS 120
 #Sniper Logic
-	execute as @e[type=armor_stand,tag=Turret1C,tag=!Frame] at @s if entity @e[tag=!Owner,distance=..59] run function turretcraft:turret1
+	execute as @e[type=armor_stand,tag=Turret1C,tag=!Frame] at @s if entity @e[tag=!TC,tag=!Owner,distance=..59] run function turretcraft:turret1
 
 #Machine Gun Construction
 	#Setblock and summons armor stands
@@ -44,11 +46,10 @@ tag @a[tag=Admin,tag=!Owner] add Owner
 		execute as @e[type=minecraft:armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] run data merge entity @s {Invulnerable:1b,NoGravity:1b,ShowArms:1b,ArmorItems:[{},{id:"iron_leggings",Count:1b},{id:"iron_chestplate",Count:1b},{id:"minecraft:quartz_block",Count:1b}],HandItems:[{},{}],DisabledSlots:2039583,Pose:{Head:[180f,0f,0f],LeftLeg:[0f,0f,10f],RightLeg:[0f,0f,350f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]},Tags:["Turret2C","TurretC","TC","Frame","V2"],CustomName:'[{"text":"Machine Gun ","color":"gray"},{"text":"Tier 1","color":"white"}]',CustomNameVisible:1b}
 		execute at @e[type=minecraft:armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] unless entity @e[type=minecraft:armor_stand,tag=TurretH,distance=..1] run summon minecraft:armor_stand ^ ^-0.35 ^-0.05 {Invisible:1b,NoGravity:1b,ArmorItems:[{},{},{},{id:"minecraft:player_head",Count:1b,tag:{SkullOwner:{Id:[I;-1113502024,843466295,-1803561648,-487382137],Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZkMTVlNzJhY2YyMTliYzFkYThhZTc2ODZmNGY4M2M3NzNhZGNiNGY4ZmFjYzg3Y2JiZDQzZWU3OTA1N2YzIn19fQ=="}]}}}}],Marker:1b,HandItems:[{},{}],DisabledSlots:2039583,Tags:["TurretH","TC"],Pose:{Head:[0.1f,0.1f,0.1f]}}
 		execute at @e[type=minecraft:armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] unless entity @e[type=minecraft:armor_stand,tag=BulletAnchor,distance=..1] run summon minecraft:armor_stand ~ ~1.2 ~ {DisabledSlots:2039583,Marker:1b,Small:1b,Invisible:1b,NoGravity:1b,Tags:["BulletAnchor","TC"]}
-		execute at @e[type=armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:machinegun",Team:"TC_NoColl",NoGravity:1b,Silent:1b,NoAI:1b,Health:125f,Tags:["TC"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:125}]}
-		execute at @e[type=armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] run scoreboard players set @e[type=wither_skeleton,tag=TC,distance=..1,limit=1,sort=nearest] TC_TurretRotS 125
-		execute as @e[type=armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] run tag @s remove Frame
+		execute at @e[type=armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:machinegun",NoGravity:1b,Silent:1b,NoAI:1b,Health:125f,Tags:["TurretHealth","Neutral"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:125}]}
+		execute at @e[type=armor_stand,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-4}] run scoreboard players set @e[type=wither_skeleton,tag=TurretHealth,distance=..1,limit=1,sort=nearest] TC_TurretRotS 125
 #Machine Gun Logic
-	execute as @e[type=armor_stand,tag=Turret2C,tag=!Frame] at @s if entity @e[tag=!Owner,distance=..26] run function turretcraft:turret2
+	execute as @e[type=armor_stand,tag=Turret2C,tag=!Frame] at @s if entity @e[tag=!TC,tag=!Owner,distance=..26] run function turretcraft:turret2
 
 #Rocket Launcher Construction
 	#Setblock and summons armor stands
@@ -57,11 +58,10 @@ tag @a[tag=Admin,tag=!Owner] add Owner
 		execute as @e[type=minecraft:armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-4}] run data merge entity @s {Invulnerable:1b,NoGravity:1b,ShowArms:1b,ArmorItems:[{},{id:"iron_leggings",Count:1b},{id:"netherite_chestplate",Count:1b},{id:"minecraft:polished_andesite",Count:1b}],HandItems:[{},{}],DisabledSlots:2039583,Pose:{Head:[180f,0f,0f],LeftLeg:[0f,0f,10f],RightLeg:[0f,0f,350f],LeftArm:[270f,0f,0f],RightArm:[270f,0f,0f]},Tags:["Turret3C","TurretC","TC","Frame","V1"],CustomName:'[{"text":"Rocket Launcher ","color":"gray"},{"text":"Tier 1","color":"white"}]',CustomNameVisible:1b}
 		execute at @e[type=minecraft:armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-3}] unless entity @e[type=minecraft:armor_stand,tag=TurretH,distance=..1] run summon minecraft:armor_stand ^ ^-0.35 ^-0.05 {Invisible:1b,NoGravity:1b,ArmorItems:[{},{},{},{id:"minecraft:player_head",Count:1b,tag:{SkullOwner:{Id:[I;-1113502024,843466295,-1803561648,-487382137],Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZkMTVlNzJhY2YyMTliYzFkYThhZTc2ODZmNGY4M2M3NzNhZGNiNGY4ZmFjYzg3Y2JiZDQzZWU3OTA1N2YzIn19fQ=="}]}}}}],Marker:1b,HandItems:[{},{}],DisabledSlots:2039583,Tags:["TurretH","TC"],Pose:{Head:[0.1f,0.1f,0.1f]}}
 		execute at @e[type=minecraft:armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-3}] unless entity @e[type=minecraft:armor_stand,tag=BulletAnchor,distance=..1] run summon minecraft:armor_stand ~ ~1.2 ~ {DisabledSlots:2039583,Marker:1b,Small:1b,Invisible:1b,NoGravity:1b,Tags:["BulletAnchor","TC"]}
-		execute at @e[type=armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-3}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:rocketlauncher",Team:"TC_NoColl",NoGravity:1b,Silent:1b,NoAI:1b,Health:150f,Tags:["TC"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:150}]}
-		execute at @e[type=armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-3}] run scoreboard players set @e[type=wither_skeleton,tag=TC,distance=..1,limit=1,sort=nearest] TC_TurretRotS 150
-		execute as @e[type=armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-3}] run tag @s remove Frame
+		execute at @e[type=armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-3}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:rocketlauncher",NoGravity:1b,Silent:1b,NoAI:1b,Health:150f,Tags:["TurretHealth","Neutral"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:150}]}
+		execute at @e[type=armor_stand,tag=Turret3C,tag=Frame,scores={TC_TurretCon=-3}] run scoreboard players set @e[type=wither_skeleton,tag=TurretHealth,distance=..1,limit=1,sort=nearest] TC_TurretRotS 150
 #Rocket Launcher Logic
-	execute as @e[type=armor_stand,tag=Turret3C,tag=!Frame] at @s if entity @e[tag=!Owner,distance=..26] run function turretcraft:turret3
+	execute as @e[type=armor_stand,tag=Turret3C,tag=!Frame] at @s if entity @e[tag=!TC,tag=!Owner,distance=..26] run function turretcraft:turret3
 
 #Flamethrower Construction
 	#Setblock and summons armor stands
@@ -70,11 +70,10 @@ tag @a[tag=Admin,tag=!Owner] add Owner
 		execute as @e[type=minecraft:armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-4}] run data merge entity @s {Invulnerable:1b,NoGravity:1b,ShowArms:1b,ArmorItems:[{},{id:"iron_leggings",Count:1b},{id:"chainmail_chestplate",Count:1b},{id:"minecraft:nether_bricks",Count:1b}],HandItems:[{},{}],DisabledSlots:2039583,Pose:{Head:[180f,0f,0f],LeftLeg:[0f,0f,10f],RightLeg:[0f,0f,350f],LeftArm:[270f,35f,0f],RightArm:[270f,325f,0f]},Tags:["Turret4C","TurretC","TC","Frame","V2"],CustomName:'[{"text":"Flamethrower ","color":"gray"},{"text":"Tier 1","color":"white"}]',CustomNameVisible:1b}
 		execute at @e[type=minecraft:armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-3}] unless entity @e[type=minecraft:armor_stand,tag=TurretH,distance=..1] run summon minecraft:armor_stand ^ ^-0.35 ^-0.05 {Invisible:1b,NoGravity:1b,ArmorItems:[{},{},{},{id:"minecraft:player_head",Count:1b,tag:{SkullOwner:{Id:[I;-1113502024,843466295,-1803561648,-487382137],Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZkMTVlNzJhY2YyMTliYzFkYThhZTc2ODZmNGY4M2M3NzNhZGNiNGY4ZmFjYzg3Y2JiZDQzZWU3OTA1N2YzIn19fQ=="}]}}}}],Marker:1b,HandItems:[{},{}],DisabledSlots:2039583,Tags:["TurretH","TC"],Pose:{Head:[0.1f,0.1f,0.1f]}}
 		execute at @e[type=minecraft:armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-3}] unless entity @e[type=minecraft:armor_stand,tag=BulletAnchor,distance=..1] run summon minecraft:armor_stand ~ ~1.2 ~ {DisabledSlots:2039583,Marker:1b,Small:1b,Invisible:1b,NoGravity:1b,Tags:["BulletAnchor","TC"]}
-		execute at @e[type=armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-3}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:flamethrower",Team:"TC_NoColl",NoGravity:1b,Silent:1b,NoAI:1b,Health:115f,Tags:["TC"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:115}]}
-		execute at @e[type=armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-3}] run scoreboard players set @e[type=wither_skeleton,tag=TC,distance=..1,limit=1,sort=nearest] TC_TurretRotS 115
-		execute as @e[type=armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-3}] run tag @s remove Frame
+		execute at @e[type=armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-3}] run summon wither_skeleton ~ ~-0.3 ~ {DeathLootTable:"turretcraft:flamethrower",NoGravity:1b,Silent:1b,NoAI:1b,Health:115f,Tags:["TurretHealth","Neutral"],ActiveEffects:[{Id:14b,Amplifier:0b,Duration:2147483647,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:115}]}
+		execute at @e[type=armor_stand,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-3}] run scoreboard players set @e[type=wither_skeleton,tag=TurretHealth,distance=..1,limit=1,sort=nearest] TC_TurretRotS 115
 #Flamethrower Logic
-	execute as @e[type=armor_stand,tag=Turret4C,tag=!Frame] at @s if entity @e[tag=!Owner,distance=..17] run function turretcraft:turret4
+	execute as @e[type=armor_stand,tag=Turret4C,tag=!Frame] at @s if entity @e[tag=!TC,tag=!Owner,distance=..17] run function turretcraft:turret4
 
 #Universal commands
 	scoreboard players set @e[type=armor_stand,tag=TC] TC_TurretRotS -90
@@ -100,8 +99,9 @@ tag @a[tag=Admin,tag=!Owner] add Owner
 		execute at @a[scores={TC_Turret=-24},tag=Owner] run tag @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] remove Stats
 		execute at @a[scores={TC_Turret=-25},tag=Owner] as @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] run tellraw @p [{"text":"[","color":"dark_green"},{"selector":"@s"},{"text":"]","color":"dark_green"},{"text":" Showing stats.","color":"gray"}]
 		execute at @a[scores={TC_Turret=-25},tag=Owner] run tag @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] add Stats
-		execute as @e[type=armor_stand,tag=Stats,tag=TurretC,tag=TC] at @s run title @a[distance=..10] actionbar [{"text":"[","color":"dark_green"},{"selector":"@s"},{"text":"]","color":"dark_green"},{"text":" Ammo: ","color":"gray"},{"score":{"name":"@s","objective":"TC_AK47_Ammo"},"color":"dark_gray"},{"text":" | Health: ","color":"gray"},{"score":{"name":"@e[type=wither_skeleton,tag=TC,distance=..1,limit=1,sort=nearest]","objective":"TC_TurretRot"},"color":"dark_gray"},{"text":" / ","color":"gray"},{"score":{"name":"@e[type=wither_skeleton,tag=TC,distance=..1,limit=1,sort=nearest]","objective":"TC_TurretRotS"},"color":"dark_gray"}]
+		execute as @e[type=armor_stand,tag=Stats,tag=TurretC,tag=TC] at @s run title @a[distance=..10] actionbar [{"text":"[","color":"dark_green"},{"selector":"@s"},{"text":"]","color":"dark_green"},{"text":" Ammo: ","color":"gray"},{"score":{"name":"@s","objective":"TC_AK47_Ammo"},"color":"dark_gray"},{"text":" | Health: ","color":"gray"},{"score":{"name":"@e[type=wither_skeleton,tag=TurretHealth,distance=..1,limit=1,sort=nearest]","objective":"TC_TurretRot"},"color":"dark_gray"},{"text":" / ","color":"gray"},{"score":{"name":"@e[type=wither_skeleton,tag=TurretHealth,distance=..1,limit=1,sort=nearest]","objective":"TC_TurretRotS"},"color":"dark_gray"}]
 	#Turret construction
+		execute as @e[type=armor_stand,tag=TurretC,tag=Frame] at @s if entity @e[type=wither_skeleton,tag=TurretHealth,distance=..1] run tag @s remove Frame
 		execute as @e[type=armor_stand,tag=TurretC,tag=!Frame,scores={TC_TurretCon=-6..-1}] run scoreboard players set @s TC_TurretCon 0
 		execute as @e[type=minecraft:armor_stand,tag=TurretC,tag=Frame] unless entity @s[scores={TC_TurretCon=-5..}] run scoreboard players set @s TC_TurretCon -6
 		execute at @e[type=item_frame,tag=Frame] run tellraw @a[distance=..5] [{"text":"[TurretCraft]","color":"dark_green"},{"text":" Constructing ","color":"gray"},{"selector":"@e[type=armor_stand,tag=TurretC,limit=1,sort=nearest,distance=..3]"},{"text":".","color":"gray"}]

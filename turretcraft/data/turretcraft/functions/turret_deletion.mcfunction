@@ -1,6 +1,6 @@
-execute at @s[tag=TurretC,tag=!Frame] unless entity @e[type=wither_skeleton,tag=TC,distance=..1] run fill ~ ~ ~ ~ ~ ~ air replace #walls
-execute at @s[tag=TurretC,tag=!Frame] unless entity @e[type=wither_skeleton,tag=TC,distance=..1] run summon tnt ~ ~ ~
-execute at @s[tag=TurretC,tag=!Frame] unless entity @e[type=wither_skeleton,tag=TC,distance=..1] run kill @e[tag=TC,distance=..1.3]
+execute at @s[tag=TurretC,tag=!Frame] unless entity @e[type=wither_skeleton,tag=TurretHealth,distance=..1] run fill ~ ~ ~ ~ ~ ~ air replace #walls
+execute at @s[tag=TurretC,tag=!Frame] unless entity @e[type=wither_skeleton,tag=TurretHealth,distance=..1] run summon tnt ~ ~ ~ {Fuse:1}
+execute at @s[tag=TurretC,tag=!Frame] unless entity @e[type=wither_skeleton,tag=TurretHealth,distance=..1] run kill @e[tag=TC,tag=!TurretLimit,distance=..1.3]
 
 execute at @s[tag=Frame,tag=Turret1C,tag=Frame,scores={TC_TurretCon=-5..-1}] if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run summon item ~ ~ ~ {Item:{id:"minecraft:conduit",Count:1b,tag:{isComponent:1b,component:1,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V1)","color":"white","italic":"false"}]'}}}}
 execute at @s[tag=Frame,tag=Turret2C,tag=Frame,scores={TC_TurretCon=-5..-1}] if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run summon item ~ ~ ~ {Item:{id:"minecraft:conduit",Count:1b,tag:{isComponent:1b,component:2,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V2)","color":"white","italic":"false"}]'}}}}
@@ -11,4 +11,5 @@ execute at @s[tag=Frame,tag=Turret4C,tag=Frame,scores={TC_TurretCon=-4}] if enti
 execute at @s[tag=Frame] if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run kill @e[tag=TC,distance=..1.3]
 
 execute at @s[tag=TurretC] if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run fill ~ ~ ~ ~ ~ ~ air replace #walls
-execute at @s[tag=TurretC] if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run kill @e[tag=TC,distance=..1.3]
+execute at @s[tag=TurretC] if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run kill @e[tag=TurretHealth,distance=..1]
+execute at @s[tag=TurretC] if entity @a[scores={TC_Turret=-1},tag=Owner,distance=..3] run kill @e[tag=TC,tag=!TurretLimit,distance=..1.3]
