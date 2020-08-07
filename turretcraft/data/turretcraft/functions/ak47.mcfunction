@@ -1,23 +1,11 @@
-scoreboard players set @a[tag=Admin] TC_AK47_Ammo 30
-execute at @a[scores={TC_AK47_Ammo=0..30},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run title @p actionbar [{"score":{"name":"@p","objective":"TC_AK47_Ammo"},"color":"gray"},{"text":" / ","color":"gray"},{"text":"30","color":"gray"}]
-scoreboard players set @a[scores={TC_AK47_Ammo=31..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] TC_AK47_Ammo 30
-execute at @a[scores={TC_AK47_Ammo=1..30,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run playsound minecraft:entity.firework_rocket.blast master @a ~ ~ ~ 10 0.1
-execute at @a[scores={TC_AK47_Ammo=1..30,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run playsound minecraft:entity.firework_rocket.blast master @a ~ ~ ~ 10 1.4
-execute at @a[scores={TC_AK47_Ammo=1..30,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run playsound minecraft:entity.firework_rocket.large_blast master @a ~ ~ ~ 20 1
-execute at @a[scores={TC_AK47_Ammo=1..30,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] positioned ~ ~1.6 ~ run summon arrow ^ ^ ^0.5 {CustomName:'{"text":"AK47"}',Tags:["Bullet","New","Player"],damage:1.8,SoundEvent:"minecraft:block.stone.break"}
-execute at @a[scores={TC_AK47_Ammo=1..30,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run summon armor_stand ~ ~1.6 ~ {Tags:["BulletAnchor","Player"],Invisible:1b,Small:1b,NoGravity:1b}
-execute at @a[scores={TC_AK47_Ammo=1..30,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run scoreboard players set @p TC_Recoil 3
-execute at @a[scores={TC_AK47_Ammo=1..30,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=3},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run scoreboard players remove @p TC_AK47_Ammo 1
-execute at @a[tag=!Admin,scores={TC_AK47_Ammo=0,TC_FireTimer=..0,TC_RightClick=1},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run playsound minecraft:block.dispenser.fail master @p ~ ~ ~ 1 2
-execute at @a[tag=!Admin,scores={TC_AK47_Ammo=0..29,TC_FireTimer=..0},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}},{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:1}}]}] run scoreboard players set @p TC_FireTimer 50
-execute at @a[tag=!Admin,scores={TC_AK47_Ammo=0..29},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}]}] run replaceitem entity @p weapon.mainhand carrot_on_a_stick{CustomModelData:1,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 30     ","color":"yellow"},{"text":"Fire rate "},{"text":"380RPM","color":"yellow"},{"text":"     Damage "},{"text":"8HP","color":"yellow"}]'],Name:'{"text":"AK47","italic":"false"}'}}
-execute at @a[tag=!Admin,scores={TC_AK47_Ammo=0..29,TC_FireTimer=..0},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}]},nbt=!{Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:1}}]}] run tellraw @p {"text":"No Ammo left","color":"red"}
-execute at @a[tag=!Admin,scores={TC_AK47_Ammo=0..29},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}]}] run replaceitem entity @p weapon.offhand air
-scoreboard players remove @a[scores={TC_AK47_Ammo=0..29},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] TC_FireTimer 1
-execute at @a[scores={TC_AK47_Ammo=0..30,TC_Recoil=1..,TC_FireTimer=..0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run scoreboard players remove @p TC_Recoil 1
-execute at @a[scores={TC_AK47_Ammo=0..30,TC_Recoil=2,TC_RightClick=1},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run tp @p ~ ~ ~ ~ ~-3
-execute at @a[scores={TC_AK47_Ammo=0..29,TC_FireTimer=0},nbt={Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:1}}],SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run scoreboard players set @p TC_AK47_Ammo 30
-execute at @a[tag=!Admin,nbt={Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:1}}]},scores={TC_FireTimer=0}] run playsound minecraft:block.piston.contract master @a ~ ~ ~ 1 1
-tellraw @a[tag=!Admin,nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}},Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:1}}]},scores={TC_FireTimer=49}] {"text":"Reloading...","color":"gray"}
-clear @a[scores={TC_FireTimer=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] wooden_pickaxe{CustomModelData:1} 1
-scoreboard players set @a[scores={TC_FireTimer=0}] TC_FireTimer -1
+scoreboard players set @a[tag=Admin,scores={TC_AK47_Ammo=..29}] TC_AK47_Ammo 30
+execute at @p[distance=..0.0001,scores={TC_AK47_Ammo=1..30}] run playsound minecraft:entity.firework_rocket.blast master @a ~ ~ ~ 10 0.1
+execute at @p[distance=..0.0001,scores={TC_AK47_Ammo=1..30}] run playsound minecraft:entity.firework_rocket.blast master @a ~ ~ ~ 10 1.4
+execute at @p[distance=..0.0001,scores={TC_AK47_Ammo=1..30}] run playsound minecraft:entity.firework_rocket.large_blast master @a ~ ~ ~ 20 1
+execute at @p[distance=..0.0001,scores={TC_AK47_Ammo=1..30}] positioned ~ ~1.6 ~ run summon arrow ^ ^ ^1 {CustomName:'{"text":"AK47"}',Tags:["Bullet","New","Player"],damage:0.8,SoundEvent:"minecraft:block.stone.break"}
+execute at @p[distance=..0.0001,scores={TC_AK47_Ammo=1..30}] run summon armor_stand ~ ~1.6 ~ {Tags:["BulletAnchor","Player"],Invisible:1b,Small:1b,NoGravity:1b}
+execute at @p[distance=..0.0001,scores={TC_AK47_Ammo=1..30}] run scoreboard players set @p TC_Recoil 3
+execute at @p[distance=..0.0001,scores={TC_Recoil=3,TC_Shifting=0}] run tp @p ~ ~ ~ ~ ~-6
+execute at @p[distance=..0.0001,scores={TC_Recoil=3,TC_Shifting=1..}] run tp @p ~ ~ ~ ~ ~-3
+execute at @p[distance=..0.0001,tag=!Admin,scores={TC_AK47_Ammo=1..30,TC_Recoil=3}] run scoreboard players remove @p TC_AK47_Ammo 1
+execute at @p[distance=..0.0001,tag=!Admin,scores={TC_AK47_Ammo=0}] run playsound minecraft:block.dispenser.fail master @p ~ ~ ~ 1 2

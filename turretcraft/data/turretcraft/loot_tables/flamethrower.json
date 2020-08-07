@@ -1,0 +1,56 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "random_chance",
+          "chance": 1
+        }
+      ],
+      "entries": [
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:conduit",
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{component:2,isComponent:1b,display:{Name:'[{\"text\":\"Turret Component\",\"color\":\"gray\",\"italic\":\"false\"},{\"text\":\" (V2)\",\"color\":\"white\",\"italic\":\"false\"}]'}}"
+            },
+            {
+              "function": "set_count",
+              "count": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "conditions": [
+        {
+          "condition": "random_chance",
+          "chance": 1
+        }
+      ],
+      "entries": [
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:conduit",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 2
+            },
+            {
+              "function": "set_nbt",
+              "tag": "{component:3,isComponent:1b,display:{Name:'[{\"text\":\"Turret Component\",\"color\":\"gray\",\"italic\":\"false\"},{\"text\":\" (V3)\",\"color\":\"white\",\"italic\":\"false\"}]'}}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

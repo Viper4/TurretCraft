@@ -1,22 +1,10 @@
-scoreboard players set @a[tag=Admin] TC_DE_Ammo 8
-execute at @a[scores={TC_DE_Ammo=0..8},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run title @p actionbar [{"score":{"name":"@p","objective":"TC_DE_Ammo"},"color":"gray"},{"text":" / ","color":"gray"},{"text":"8","color":"gray"}]
-scoreboard players set @a[scores={TC_DE_Ammo=9..},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] TC_DE_Ammo 8
-execute at @a[scores={TC_DE_Ammo=1..8,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run playsound minecraft:block.stone.break master @a ~ ~ ~ 19 1.2
-execute at @a[scores={TC_DE_Ammo=1..8,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run playsound minecraft:entity.firework_rocket.blast master @a ~ ~ ~ 20 0.1
-execute at @a[scores={TC_DE_Ammo=1..8,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] positioned ~ ~1.6 ~ run summon arrow ^ ^ ^0.5 {CustomName:'{"text":"Desert Eagle"}',Tags:["Bullet","New","Player"],damage:2.2,SoundEvent:"minecraft:block.stone.break"}
-execute at @a[scores={TC_DE_Ammo=1..8,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run summon armor_stand ~ ~1.6 ~ {Tags:["BulletAnchor","Player"],Invisible:1b,Small:1b,NoGravity:1b}
-execute at @a[scores={TC_DE_Ammo=1..8,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run scoreboard players set @p TC_Recoil 13
-execute at @a[scores={TC_DE_Ammo=1..8,TC_FireTimer=..0,TC_RightClick=1,TC_Recoil=13},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run scoreboard players remove @p TC_DE_Ammo 1
-execute at @a[tag=!Admin,scores={TC_DE_Ammo=0,TC_FireTimer=..0,TC_RightClick=1},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run playsound minecraft:block.dispenser.fail master @p ~ ~ ~ 1 2
-execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7,TC_FireTimer=..0},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}},{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:2}}]}] run scoreboard players set @p TC_FireTimer 40
-execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]}] run replaceitem entity @p weapon.mainhand carrot_on_a_stick{CustomModelData:2,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 8     ","color":"yellow"},{"text":"Fire rate "},{"text":"70RPM","color":"yellow"},{"text":"     Damage "},{"text":"10HP","color":"yellow"}]'],Name:'{"text":"Desert Eagle","italic":"false"}'}}
-execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7,TC_FireTimer=..0},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]},nbt=!{Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:2}}]}] run tellraw @p {"text":"No Ammo left","color":"red"}
-execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]}] run replaceitem entity @p weapon.offhand air
-scoreboard players remove @a[scores={TC_DE_Ammo=0..7},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] TC_FireTimer 1
-execute at @a[scores={TC_DE_Ammo=0..8,TC_Recoil=1..,TC_FireTimer=..0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run scoreboard players remove @p TC_Recoil 1
-execute at @a[scores={TC_DE_Ammo=0..8,TC_Recoil=12,TC_RightClick=1},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run tp @p ~ ~ ~ ~ ~-12
-execute at @a[scores={TC_DE_Ammo=0..7,TC_FireTimer=0},nbt={Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:2}}],SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run scoreboard players set @p TC_DE_Ammo 8
-execute at @a[tag=!Admin,nbt={Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:2}}]},scores={TC_FireTimer=0}] run playsound minecraft:block.piston.contract master @a ~ ~ ~ 1 1
-tellraw @a[tag=!Admin,nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}},Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:2}}]},scores={TC_FireTimer=39}] {"text":"Reloading...","color":"gray"}
-clear @a[scores={TC_FireTimer=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] wooden_pickaxe{CustomModelData:2} 1
-scoreboard players set @a[scores={TC_FireTimer=0}] TC_FireTimer -1
+scoreboard players set @a[tag=Admin,scores={TC_DE_Ammo=..7}] TC_DE_Ammo 8
+execute at @p[scores={TC_DE_Ammo=1..8},distance=..0.0001] run playsound minecraft:block.stone.break master @a ~ ~ ~ 19 1.2
+execute at @p[scores={TC_DE_Ammo=1..8},distance=..0.0001] run playsound minecraft:entity.firework_rocket.blast master @a ~ ~ ~ 20 0.1
+execute at @p[scores={TC_DE_Ammo=1..8},distance=..0.0001] positioned ~ ~1.6 ~ run summon arrow ^ ^ ^1 {CustomName:'{"text":"Desert Eagle"}',Tags:["Bullet","New","Player"],damage:1.0,SoundEvent:"minecraft:block.stone.break"}
+execute at @p[scores={TC_DE_Ammo=1..8},distance=..0.0001] run summon armor_stand ~ ~1.6 ~ {Tags:["BulletAnchor","Player"],Invisible:1b,Small:1b,NoGravity:1b}
+execute at @p[scores={TC_DE_Ammo=1..8},distance=..0.0001] run scoreboard players set @p TC_Recoil 16
+execute at @p[scores={TC_Recoil=16,TC_Shifting=0},distance=..0.0001] run tp @p ~ ~ ~ ~ ~-13
+execute at @p[scores={TC_Recoil=16,TC_Shifting=1..},distance=..0.0001] run tp @p ~ ~ ~ ~ ~-6.5
+execute at @p[scores={TC_DE_Ammo=1..8,TC_Recoil=13},distance=..0.0001] run scoreboard players remove @p TC_DE_Ammo 1
+execute at @p[scores={TC_DE_Ammo=0},distance=..0.0001] run playsound minecraft:block.dispenser.fail master @p ~ ~ ~ 1 2

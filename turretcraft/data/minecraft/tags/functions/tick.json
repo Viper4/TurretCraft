@@ -1,16 +1,9 @@
 {
 	"values":[
 		"turretcraft:turrets",
-		"turretcraft:upgrades",
 		"turretcraft:targets",
-		"turretcraft:turret_deletion",
-		"turretcraft:bullets",
-		"turretcraft:modified_crafter",
+		"turretcraft:detections",
 		"turretcraft:admin",
-		"turretcraft:ak47",
-		"turretcraft:deserteagle",
-		"turretcraft:awp",
-		"turretcraft:m16",
 		"turretcraft:reset"
 	]
 }
