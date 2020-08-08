@@ -22,8 +22,6 @@ tellraw @a[tag=MaxTurret,scores={TC_Turret=1..99}] [{"text":"[TurretCraft]","col
 
 execute as @e[type=armor_stand,tag=TurretC,tag=!Frame,tag=Firing] run tag @s remove Firing
 execute as @e[type=armor_stand,tag=TurretC,tag=!Frame,tag=PlayerT] at @s if entity @a[tag=!Admin,distance=1..60] run function turretcraft:uuidcheck
-execute as @e[type=armor_stand,tag=TurretC,tag=!Frame,tag=FriendlyT] at @s if entity @e[tag=Friendly,tag=!TC,distance=1..60] run function turretcraft:uuidcheck
-execute as @e[type=armor_stand,tag=TurretC,tag=!Frame,tag=NeutralT] at @s if entity @e[tag=Neutral,tag=!TC,distance=1..60] run function turretcraft:uuidcheck
 execute as @e[type=armor_stand,tag=TurretC,tag=!Frame,tag=HostileT] at @s if entity @e[tag=Hostile,tag=!TC,distance=1..60] run function turretcraft:uuidcheck
 execute at @a[tag=!Owner,scores={TC_Turret=-3..-1}] if entity @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] run tellraw @p [{"text":"[TurretCraft]","color":"dark_green"},{"text":" You do not own ","color":"red"},{"selector":"@e[type=armor_stand,distance=..3,tag=TurretC,limit=1,sort=nearest]"},{"text":".","color":"red"}]
 execute at @a[scores={TC_Turret=-3..-1}] unless entity @e[type=armor_stand,tag=TurretC,distance=..3,limit=1,sort=nearest] run tellraw @p [{"text":"[TurretCraft]","color":"dark_green"},{"text":" No Turret found, stand within 3 blocks of desired turret.","color":"red"}]
@@ -112,8 +110,7 @@ tag @a[tag=Admin,tag=!Owner] add Owner
 	#Rotation of Turrets and playing ambient sound
 		execute as @e[type=minecraft:armor_stand,tag=TurretC,tag=!Frame,tag=!Firing] at @s run tp @s ~ ~ ~ ~1.5 ~
 		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=!Frame] run tp @e[type=minecraft:armor_stand,tag=TurretH,distance=..1.3] ^ ^-0.35 ^-0.05 ~ ~
-		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=!MaxTier,tag=!Frame] run playsound minecraft:block.beacon.ambient ambient @a ~ ~ ~ 0.2 2
-		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=MaxTier,tag=!Frame] run playsound minecraft:block.beacon.ambient ambient @a ~ ~ ~ 0.08 2
+		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=!MaxTier,tag=!Frame] run playsound minecraft:block.beacon.ambient ambient @a ~ ~ ~ 0.1 2
 	#Pointing all aesthetic pieces towards unwanted target
 		execute as @e[type=armor_stand,tag=TurretC] at @s store result entity @e[type=armor_stand,tag=!TurretC,tag=TC,distance=..1.3,limit=1] Pose.Head[0] float 1 run data get entity @s Rotation[1] 1
 		execute as @e[type=armor_stand,tag=TurretC] at @s store result score @s TC_TurretRot run data get entity @s Rotation[1] 1

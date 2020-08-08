@@ -1,8 +1,8 @@
 #Setting FireTimer
 scoreboard players set @s[tag=Turret1C,scores={TC_TurretCon=0..1}] TC_FireTimer 18
 scoreboard players set @s[tag=Turret1C,scores={TC_TurretCon=2}] TC_FireTimer 15
-scoreboard players set @s[tag=Turret2C,scores={TC_TurretCon=0}] TC_FireTimer 10
-scoreboard players set @s[tag=Turret2C,scores={TC_TurretCon=1}] TC_FireTimer 6
+scoreboard players set @s[tag=Turret2C,scores={TC_TurretCon=0}] TC_FireTimer 8
+scoreboard players set @s[tag=Turret2C,scores={TC_TurretCon=1}] TC_FireTimer 5
 scoreboard players set @s[tag=Turret2C,scores={TC_TurretCon=2}] TC_FireTimer 3
 scoreboard players set @s[tag=Turret3C,scores={TC_TurretCon=0}] TC_FireTimer 35
 scoreboard players set @s[tag=Turret3C,scores={TC_TurretCon=1..2}] TC_FireTimer 25
