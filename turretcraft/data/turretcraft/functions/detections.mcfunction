@@ -37,7 +37,7 @@ execute as @e[type=armor_stand,tag=TurretC,tag=!Turret3C,tag=!Turret4C] at @s ru
 execute as @e[type=armor_stand,tag=Turret3C] at @s run kill @e[type=item,nbt={Item:{id:"minecraft:wooden_pickaxe",Count:1b,tag:{CustomModelData:5}}},distance=..1,limit=1]
 execute as @e[type=armor_stand,tag=Turret4C] at @s run kill @e[type=item,nbt={Item:{id:"minecraft:wooden_pickaxe",Count:1b,tag:{CustomModelData:6}}},distance=..1,limit=1]
 
-scoreboard players add @e[type=arrow,tag=Bullet,tag=Missile,tag=!New] TC_FireTimer 1
+scoreboard players add @e[type=arrow,tag=Bullet,tag=Missile] TC_FireTimer 1
 execute at @e[type=arrow,tag=Bullet] run particle minecraft:smoke ~ ~ ~ 0 0 0 0.001 1
 execute at @e[type=arrow,tag=Bullet,tag=Flame] run particle minecraft:flame ~ ~ ~ 0 0 0 0.001 1
 execute at @e[type=arrow,tag=Bullet,tag=!Flame,tag=!Missile] if block ^ ^ ^1 #impermeable run playsound block.glass.break master @a ~ ~ ~ 1 1
@@ -47,14 +47,15 @@ execute at @e[type=arrow,tag=Bullet,tag=!Flame,tag=!Missile] run fill ^ ^ ^-1 ^ 
 execute at @e[type=arrow,tag=Bullet,nbt={inGround:1b}] run particle large_smoke ~ ~ ~ 0 0 0 0.01 1
 execute at @e[type=arrow,tag=Bullet,tag=Missile,nbt={inGround:1b},scores={TC_FireTimer=..59}] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
 execute at @e[type=arrow,tag=Bullet,tag=Missile,nbt=!{inGround:1b},scores={TC_FireTimer=60}] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
-execute at @e[type=arrow,tag=Bullet,tag=Missile,tag=!New,nbt=!{inGround:1b},scores={TC_FireTimer=..59}] if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!TC,tag=!Missile,distance=..0.8] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
+execute at @e[type=arrow,tag=Bullet,tag=Missile,tag=!New,nbt=!{inGround:1b},scores={TC_FireTimer=3..59}] positioned ~ ~-1 ~ if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!TC,tag=!Missile,distance=..1.5] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
 execute at @e[type=arrow,tag=Bullet,tag=Flame] run fill ~-0.5 ~-0.5 ~-0.5 ~0.5 ~0.5 ~0.5 fire replace air
 kill @e[type=arrow,tag=Bullet,nbt={inGround:1b}]
 kill @e[type=arrow,tag=Bullet,tag=Missile,scores={TC_FireTimer=60..}]
-execute as @e[type=arrow,tag=Bullet,tag=!New,tag=Missile] at @s if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!Missile,tag=!TC,distance=..0.8] run kill @s
+execute as @e[type=arrow,tag=Bullet,tag=!New,tag=Missile,scores={TC_FireTimer=3..}] at @s positioned ~ ~-1 ~ if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!Missile,tag=!TC,distance=..1.5] run kill @s
 kill @e[type=armor_stand,tag=BulletAnchor,tag=Player]
 
 #Upgrades
+execute as @e[type=wither_skeleton,tag=TurretHealth,tag=InfiniteHealth,scores={TC_TurretRot=..1336}] store result entity @s Health float 1 run scoreboard players set @s TC_TurretRot 1337
 execute as @e[type=armor_stand,tag=TurretC] at @s if entity @e[type=item,distance=..1,limit=1] run function turretcraft:upgrades
 
 #Player Desert Eagle
