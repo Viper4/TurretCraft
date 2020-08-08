@@ -4,7 +4,7 @@ give @a[tag=Admin,scores={TC_Turret=-23}] conduit{component:3,isComponent:1b,dis
 give @a[tag=Admin,scores={TC_Turret=-10}] stone_hoe{CustomModelData:2,display:{Name:'{"text":"Rifle Barrel","italic":"false"}'}}
 give @a[tag=Admin,scores={TC_Turret=-11}] stone_hoe{CustomModelData:3,display:{Name:'{"text":"Rifle Body","italic":"false"}'}}
 give @a[tag=Admin,scores={TC_Turret=-12}] stone_hoe{CustomModelData:1,display:{Name:'{"text":"Shoulder Stock","italic":"false"}'}}
-give @a[tag=Admin,scores={TC_Turret=-13}] carrot_on_a_stick{CustomModelData:2,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 8     ","color":"yellow"},{"text":"Fire rate "},{"text":"70RPM","color":"yellow"},{"text":"     Damage "},{"text":"10HP","color":"yellow"}]'],Name:'{"text":"Desert Eagle","italic":"false"}'}}
+give @a[tag=Admin,scores={TC_Turret=-13}] carrot_on_a_stick{CustomModelData:2,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 8     ","color":"yellow"},{"text":"Fire rate "},{"text":"70RPM","color":"yellow"},{"text":"     Damage "},{"text":"12HP","color":"yellow"}]'],Name:'{"text":"Desert Eagle","italic":"false"}'}}
 give @a[tag=Admin,scores={TC_Turret=-14}] wooden_pickaxe{CustomModelData:2,display:{Name:'{"text":".44 Magnum","italic":"false"}'}}
 give @a[tag=Admin,scores={TC_Turret=-15}] carrot_on_a_stick{CustomModelData:1,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 30     ","color":"yellow"},{"text":"Fire rate "},{"text":"380RPM","color":"yellow"},{"text":"     Damage "},{"text":"8HP","color":"yellow"}]'],Name:'{"text":"AK47","italic":"false"}'}}
 give @a[tag=Admin,scores={TC_Turret=-16}] wooden_pickaxe{CustomModelData:1,display:{Name:'{"text":"7.62x39mm","italic":"false"}'}}

@@ -112,8 +112,8 @@ tag @a[tag=Admin,tag=!Owner] add Owner
 	#Rotation of Turrets and playing ambient sound
 		execute as @e[type=minecraft:armor_stand,tag=TurretC,tag=!Frame,tag=!Firing] at @s run tp @s ~ ~ ~ ~1.5 ~
 		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=!Frame] run tp @e[type=minecraft:armor_stand,tag=TurretH,distance=..1.3] ^ ^-0.35 ^-0.05 ~ ~
-		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=!MaxTier,tag=!Frame] run playsound minecraft:block.beacon.ambient ambient @a ~ ~ ~ 0.6 2
-		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=MaxTier,tag=!Frame] run playsound minecraft:block.beacon.ambient ambient @a ~ ~ ~ 0.2 2
+		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=!MaxTier,tag=!Frame] run playsound minecraft:block.beacon.ambient ambient @a ~ ~ ~ 0.2 2
+		execute at @e[type=minecraft:armor_stand,tag=TurretC,tag=MaxTier,tag=!Frame] run playsound minecraft:block.beacon.ambient ambient @a ~ ~ ~ 0.08 2
 	#Pointing all aesthetic pieces towards unwanted target
 		execute as @e[type=armor_stand,tag=TurretC] at @s store result entity @e[type=armor_stand,tag=!TurretC,tag=TC,distance=..1.3,limit=1] Pose.Head[0] float 1 run data get entity @s Rotation[1] 1
 		execute as @e[type=armor_stand,tag=TurretC] at @s store result score @s TC_TurretRot run data get entity @s Rotation[1] 1

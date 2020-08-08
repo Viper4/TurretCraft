@@ -47,11 +47,11 @@ execute at @e[type=arrow,tag=Bullet,tag=!Flame,tag=!Missile] run fill ^ ^ ^-1 ^ 
 execute at @e[type=arrow,tag=Bullet,nbt={inGround:1b}] run particle large_smoke ~ ~ ~ 0 0 0 0.01 1
 execute at @e[type=arrow,tag=Bullet,tag=Missile,nbt={inGround:1b},scores={TC_FireTimer=..59}] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
 execute at @e[type=arrow,tag=Bullet,tag=Missile,nbt=!{inGround:1b},scores={TC_FireTimer=60}] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
-execute at @e[type=arrow,tag=Bullet,tag=Missile,nbt=!{inGround:1b},scores={TC_FireTimer=..59}] if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!TC,tag=!Missile,distance=..1.5] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
+execute at @e[type=arrow,tag=Bullet,tag=Missile,tag=!New,nbt=!{inGround:1b},scores={TC_FireTimer=..59}] if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!TC,tag=!Missile,distance=..0.8] run summon creeper ~ ~ ~ {Tags:["Missile"],ExplosionRadius:3,Fuse:0}
 execute at @e[type=arrow,tag=Bullet,tag=Flame] run fill ~-0.5 ~-0.5 ~-0.5 ~0.5 ~0.5 ~0.5 fire replace air
 kill @e[type=arrow,tag=Bullet,nbt={inGround:1b}]
 kill @e[type=arrow,tag=Bullet,tag=Missile,scores={TC_FireTimer=60..}]
-execute as @e[type=arrow,tag=Bullet,tag=Missile] at @s if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!Missile,tag=!TC,distance=..1.5] run kill @s
+execute as @e[type=arrow,tag=Bullet,tag=!New,tag=Missile] at @s if entity @e[type=!#arrows,type=!#impact_projectiles,type=!item,tag=!Missile,tag=!TC,distance=..0.8] run kill @s
 kill @e[type=armor_stand,tag=BulletAnchor,tag=Player]
 
 #Upgrades
@@ -61,7 +61,7 @@ execute as @e[type=armor_stand,tag=TurretC] at @s if entity @e[type=item,distanc
 execute at @a[nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run title @p actionbar [{"score":{"name":"@p","objective":"TC_DE_Ammo"},"color":"gray"},{"text":" / ","color":"gray"},{"text":"8","color":"gray"}]
 execute at @a[scores={TC_FireTimer=-1,TC_RightClick=1,TC_Recoil=0},nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run function turretcraft:deserteagle
 execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7,TC_FireTimer=-1},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}},{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:2}}]}] run scoreboard players set @p TC_FireTimer 40
-execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]}] run replaceitem entity @p weapon.mainhand carrot_on_a_stick{CustomModelData:2,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 8     ","color":"yellow"},{"text":"Fire rate "},{"text":"70RPM","color":"yellow"},{"text":"     Damage "},{"text":"10HP","color":"yellow"}]'],Name:'{"text":"Desert Eagle","italic":"false"}'}}
+execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]}] run replaceitem entity @p weapon.mainhand carrot_on_a_stick{CustomModelData:2,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 8     ","color":"yellow"},{"text":"Fire rate "},{"text":"70RPM","color":"yellow"},{"text":"     Damage "},{"text":"12HP","color":"yellow"}]'],Name:'{"text":"Desert Eagle","italic":"false"}'}}
 execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7,TC_FireTimer=-1},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]},nbt=!{Inventory:[{id:"minecraft:wooden_pickaxe",tag:{CustomModelData:2}}]}] run tellraw @p {"text":"No Ammo left","color":"red"}
 clear @a[tag=!Admin,scores={TC_FireTimer=40,TC_DE_Ammo=0..7},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]}] wooden_pickaxe{CustomModelData:2} 1
 execute at @a[tag=!Admin,scores={TC_DE_Ammo=0..7},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}]}] run replaceitem entity @p weapon.offhand air
