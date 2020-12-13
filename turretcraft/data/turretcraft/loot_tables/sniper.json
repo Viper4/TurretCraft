@@ -1,11 +1,11 @@
 {
     "pools": [
         {
-            "rolls": 1,
+            "rolls": 2,
             "conditions": [
                 {
                     "condition": "random_chance",
-                    "chance": 1
+                    "chance": 0.98
                 }
             ],
             "entries": [
@@ -20,7 +20,7 @@
                         },
                         {
                             "function": "set_count",
-                            "count": 2
+                            "count": 1
                         }
                     ]
                 }

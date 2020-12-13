@@ -5,7 +5,7 @@
       "conditions": [
         {
           "condition": "random_chance",
-          "chance": 1
+          "chance": 0.98
         }
       ],
       "entries": [
@@ -27,11 +27,11 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 2,
       "conditions": [
         {
           "condition": "random_chance",
-          "chance": 1
+          "chance": 0.98
         }
       ],
       "entries": [
@@ -42,7 +42,7 @@
           "functions": [
             {
               "function": "set_count",
-              "count": 2
+              "count": 1
             },
             {
               "function": "set_nbt",
