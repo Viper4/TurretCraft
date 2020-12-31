@@ -6,6 +6,6 @@ execute at @p[scores={TC_M16_Ammo=1..30},distance=..1] positioned ~ ~1.6 ~ run s
 execute at @p[scores={TC_M16_Ammo=1..30},distance=..1] run summon armor_stand ~ ~1.6 ~ {Tags:["BulletAnchor","Player"],Invisible:1b,Small:1b,NoGravity:1b}
 execute at @p[scores={TC_M16_Ammo=1..30},distance=..1] run scoreboard players set @p TC_Recoil 2
 execute at @p[scores={TC_Recoil=2,TC_Shifting=0},distance=..1] run tp @p ~ ~ ~ ~ ~-4
-execute at @p[scores={TC_Recoil=2,TC_Shifting=1..},distance=..1] run tp @p ~ ~ ~ ~ ~-2
+execute at @p[scores={TC_Recoil=2,TC_Shifting=1..},distance=..1] run tp @p ~ ~ ~ ~ ~-2.5
 execute at @p[scores={TC_M16_Ammo=1..30},distance=..1] run scoreboard players remove @p TC_M16_Ammo 1
 execute at @p[tag=!Admin,scores={TC_M16_Ammo=0},distance=..1] run playsound minecraft:block.dispenser.fail master @p ~ ~ ~ 1 2

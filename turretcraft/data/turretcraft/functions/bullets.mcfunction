@@ -20,4 +20,8 @@ execute store result entity @s[tag=Flame] Motion[2] double 0.0002 run scoreboard
 execute store result entity @s[tag=Missile] Motion[0] double 0.00022 run scoreboard players get @s TC_PosX
 execute store result entity @s[tag=Missile] Motion[1] double 0.00022 run scoreboard players get @s TC_PosY
 execute store result entity @s[tag=Missile] Motion[2] double 0.00022 run scoreboard players get @s TC_PosZ
+execute if entity @p[nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] run tag @s[tag=Player] add AK47
+execute if entity @p[nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:4}}}] run tag @s[tag=Player] add M16
+execute if entity @p[nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:2}}}] run tag @s[tag=Player] add DE
+execute if entity @p[nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:3}}}] run tag @s[tag=Player] add AWP
 tag @s remove New
