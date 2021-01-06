@@ -33,8 +33,13 @@ execute at @a[tag=TC_RemoteControlStop] store result score @p TC_UUID0 run data 
 execute at @a[tag=TC_RemoteControlStop] store result score @p TC_UUID1 run data get entity @p UUID[1]
 execute at @a[tag=TC_RemoteControlStop] store result score @p TC_UUID2 run data get entity @p UUID[2]
 execute at @a[tag=TC_RemoteControl] run function turretcraft:remote_control
-execute at @a[tag=Owner,nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:5}}},scores={TC_RightClick=1..,TC_Shifting=1..}] as @e[type=armor_stand,tag=TC,tag=TurretC,limit=1,sort=nearest,distance=..3] run function turretcraft:remote_control_pair
-execute at @a[tag=TC_RemoteControlStart] run function turretcraft:remote_control_start
+execute at @a[tag=Owner,tag=!TC_RemoteControl,nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:5}}},scores={TC_RightClick=1..,TC_Shifting=1..}] as @e[type=armor_stand,tag=TC,tag=TurretC,limit=1,sort=nearest,distance=..3] run function turretcraft:remote_control_pair
+execute at @a[tag=TC_RemoteControl,nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:5}}},scores={TC_RightClick=1..,TC_Shifting=1..},limit=1,sort=nearest] as @e[type=armor_stand,tag=TC,tag=TurretC,tag=!TC_RemoteControl] if score @s TC_Frequency = @p TC_Frequency run tag @s add TC_RemoteControlSwitch
+execute at @a[tag=TC_RemoteControl,nbt={SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:5}}},scores={TC_RightClick=1..,TC_Shifting=1..},limit=1,sort=nearest] as @e[type=armor_stand,tag=TC,tag=TurretC,tag=!TC_RemoteControl,tag=TC_RemoteControlSwitch,limit=1,sort=random] run function turretcraft:remote_control_switch
+tag @e[tag=TurretC,tag=TC_RemoteControlSwitch] remove TC_RemoteControlSwitch
+execute at @a[tag=TC_RemoteControlStart,limit=1,sort=nearest] as @e[type=armor_stand,tag=TC,tag=TurretC,tag=!TC_RemoteControl] if score @s TC_Frequency = @p TC_Frequency run tag @s add TC_RemoteControlStart
+execute at @a[tag=TC_RemoteControlStart,limit=1,sort=nearest] as @e[type=armor_stand,tag=TC,tag=TurretC,tag=!TC_RemoteControl,tag=TC_RemoteControlStart,limit=1,sort=nearest] run function turretcraft:remote_control_start
+tag @e[tag=TurretC,tag=TC_RemoteControlStart] remove TC_RemoteControlStart
 execute at @a[tag=TC_RemoteControlStop] as @e[tag=RemoteControlHome,tag=!New] if score @s TC_UUID0 = @p TC_UUID0 if score @s TC_UUID1 = @p TC_UUID1 if score @s TC_UUID2 = @p TC_UUID2 run function turretcraft:remote_control_stop
 
 #Turret firing
