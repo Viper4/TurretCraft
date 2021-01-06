@@ -1,7 +1,6 @@
 #All Vanilla commands for Sniper logic
 #Made by Viper1618
 #---
-
 #Detecting for unwanted entities in a radius, facing towards them, and adding the "Firing" tag
 execute at @s[tag=!Frame,tag=PlayerT,scores={TC_TurretCon=0}] if entity @a[tag=!Owner,distance=..27] run tp @s ~ ~ ~ facing entity @a[tag=!Owner,distance=..27,sort=nearest,limit=1]
 execute at @s[tag=!Frame,tag=PlayerT,scores={TC_TurretCon=0}] if entity @a[tag=!Owner,distance=..26] run tag @s add Firing

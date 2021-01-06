@@ -1,6 +1,6 @@
-give @a[tag=Admin,scores={TC_Turret=-8}] conduit{component:1,isComponent:1b,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V1)","color":"white","italic":"false"}]'}}
-give @a[tag=Admin,scores={TC_Turret=-9}] conduit{component:2,isComponent:1b,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V2)","color":"white","italic":"false"}]'}}
-give @a[tag=Admin,scores={TC_Turret=-23}] conduit{component:3,isComponent:1b,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V3)","color":"white","italic":"false"}]'}}
+give @a[tag=Admin,scores={TC_Turret=-8}] conduit{component:1,isComponent:1b,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V1)","color":"white","italic":"false"}]'}} 64
+give @a[tag=Admin,scores={TC_Turret=-9}] conduit{component:2,isComponent:1b,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V2)","color":"white","italic":"false"}]'}} 64
+give @a[tag=Admin,scores={TC_Turret=-23}] conduit{component:3,isComponent:1b,display:{Name:'[{"text":"Turret Component","color":"gray","italic":"false"},{"text":" (V3)","color":"white","italic":"false"}]'}} 64
 give @a[tag=Admin,scores={TC_Turret=-10}] stone_hoe{CustomModelData:2,display:{Name:'{"text":"Rifle Barrel","italic":"false"}'}}
 give @a[tag=Admin,scores={TC_Turret=-11}] stone_hoe{CustomModelData:3,display:{Name:'{"text":"Rifle Body","italic":"false"}'}}
 give @a[tag=Admin,scores={TC_Turret=-12}] stone_hoe{CustomModelData:1,display:{Name:'{"text":"Shoulder Stock","italic":"false"}'}}

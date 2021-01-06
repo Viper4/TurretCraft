@@ -11,6 +11,7 @@ scoreboard objectives add TC_UUID2 dummy
 scoreboard objectives add TC_PosX dummy
 scoreboard objectives add TC_PosY dummy
 scoreboard objectives add TC_PosZ dummy
+scoreboard objectives add TC_Frequency trigger
 execute in minecraft:overworld unless entity @e[tag=TurretLimit,type=armor_stand,distance=0..] run summon armor_stand 0 0 0 {Tags:["TurretLimit","TC"],CustomName:'{"text":"Turret Limit"}',Invisible:1b,Small:1b,NoGravity:1b,Marker:1b}
 execute in minecraft:overworld unless entity @e[tag=TurretLimit,type=armor_stand,scores={TC_TurretRot=-1..},distance=0..] run scoreboard players set @e[type=armor_stand,tag=TurretLimit] TC_TurretRot 10
 

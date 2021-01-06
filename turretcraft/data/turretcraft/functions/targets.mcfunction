@@ -1,6 +1,6 @@
 # All Vanilla commands for allowing/unallowing entities for turrets
 # Made by: Viper1618
-#Note: Targeting is positive UnTargeting is negative
+#Note: Targeting is positive Untargeting is negative
 # Pick Entity is W.I.P
 #--------------------
 

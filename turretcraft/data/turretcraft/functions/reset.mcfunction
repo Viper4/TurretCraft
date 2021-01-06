@@ -14,4 +14,5 @@ scoreboard players set @a[scores={TC_RightClick=1..}] TC_RightClick 0
 scoreboard players set @a[scores={TC_Shifting=1..}] TC_Shifting 0
 scoreboard players enable @a TC_Turret
 scoreboard players enable @a TC_Target
+scoreboard players enable @a TC_Frequency
 scoreboard players set @e[type=armor_stand,tag=TC] TC_TurretRotS -90
