@@ -1,0 +1,32 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Navy SEAL",
+            "color": "dark_purple"
+        },
+        "description": {
+            "text": "While underwater, kill 5 unique targets at once",
+            "color": "dark_purple"
+        },
+        "icon": {
+            "item": "minecraft:turtle_helmet"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "killCrossbow": {
+            "trigger": "minecraft:killed_by_crossbow",
+            "conditions": {
+                "unique_entity_types": {
+                    "min": 5,
+                    "max": 5
+                }
+            }
+        }
+    },
+    "parent": "turretcraft:pierce2"
+}

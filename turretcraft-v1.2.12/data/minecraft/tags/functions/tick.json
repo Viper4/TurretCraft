@@ -1,0 +1,9 @@
+{
+	"values":[
+		"turretcraft:turrets/targets",
+		"turretcraft:turrets/turrets",
+		"turretcraft:detections",
+		"turretcraft:admin",
+		"turretcraft:loop"
+	]
+}

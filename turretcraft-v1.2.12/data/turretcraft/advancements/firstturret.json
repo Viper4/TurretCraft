@@ -1,0 +1,26 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Need a Sentry Here!",
+            "color": "green"
+        },
+        "description": {
+            "text": "Fully construct a turret",
+            "color": "green"
+        },
+        "icon": {
+            "item": "minecraft:armor_stand"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+    "parent": "turretcraft:bitbybit"
+}

@@ -1,0 +1,39 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Shot Through the Heart",
+            "color": "green"
+        },
+        "description": {
+            "text": "Kill 2 or more targets at once",
+            "color": "green"
+        },
+        "icon": {
+            "item": "minecraft:tipped_arrow",
+            "nbt": "{Potion:\"minecraft:healing\"}"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "killCrossbow": {
+            "trigger": "minecraft:killed_by_crossbow",
+            "conditions": {
+                "unique_entity_types": {
+                    "min": 0,
+                    "max": 5
+                },
+                "victims": [
+                    {
+                    },
+                    {
+                    }
+                ]
+            }
+        }
+    },
+    "parent": "turretcraft:firstgun"
+}
