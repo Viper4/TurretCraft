@@ -22,10 +22,6 @@
         "killCrossbow": {
             "trigger": "minecraft:killed_by_crossbow",
             "conditions": {
-                "unique_entity_types": {
-                    "min": 0,
-                    "max": 5
-                },
                 "victims": [
                     {
                     },

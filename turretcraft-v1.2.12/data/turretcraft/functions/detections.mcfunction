@@ -120,7 +120,7 @@ execute at @a[tag=!Admin,nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_s
 execute at @a[tag=!Admin,tag=StartReloading,nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}},{id:"minecraft:clock",tag:{CustomModelData:1}}]}] run tag @p add ReloadingAK47
 scoreboard players set @a[tag=Reloaded,tag=ReloadingAK47] TC_AK47_Ammo 30
 tag @a[tag=!Admin,tag=ReloadingAK47,tag=Reloaded] remove ReloadingAK47
-replaceitem entity @a[tag=!Admin,tag=StartReloading,tag=ReloadingAK47] weapon.mainhand carrot_on_a_stick{CustomModelData:1,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 30     ","color":"yellow"},{"text":"Fire rate "},{"text":"380RPM","color":"yellow"},{"text":"     Damage "},{"text":"8HP","color":"yellow"}]'],Name:'{"text":"AK47","italic":"false"}'}}
+replaceitem entity @a[tag=!Admin,tag=StartReloading,tag=ReloadingAK47] weapon.mainhand carrot_on_a_stick{isGun:1b,CustomModelData:1,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 30     ","color":"yellow"},{"text":"Fire rate "},{"text":"380RPM","color":"yellow"},{"text":"     Damage "},{"text":"8HP","color":"yellow"}]'],Name:'{"text":"AK47","italic":"false"}'}}
 tag @a[tag=!Admin,tag=ReloadingAK47,nbt=!{SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}}] add CancelReload
 execute at @a[tag=!Admin,scores={TC_AK47_Ammo=0..29,TC_FireTimer=-1},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:1}}]},nbt=!{Inventory:[{id:"minecraft:clock",tag:{CustomModelData:1}}]}] run tellraw @p {"text":"No Ammo left","color":"red"}
 clear @a[tag=!Admin,tag=StartReloading,tag=ReloadingAK47] clock{CustomModelData:1} 1
@@ -136,7 +136,7 @@ execute at @a[tag=!Admin,nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_s
 execute at @a[tag=!Admin,tag=StartReloading,nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:4}},{id:"minecraft:clock",tag:{CustomModelData:4}}]}] run tag @p add ReloadingM16
 scoreboard players set @a[tag=Reloaded,tag=ReloadingM16] TC_M16_Ammo 30
 tag @a[tag=!Admin,tag=ReloadingM16,tag=Reloaded] remove ReloadingM16
-replaceitem entity @a[tag=!Admin,tag=StartReloading,tag=ReloadingM16] weapon.mainhand carrot_on_a_stick{CustomModelData:4,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 30     ","color":"yellow"},{"text":"Fire rate "},{"text":"400RPM","color":"yellow"},{"text":"     Damage "},{"text":"5HP","color":"yellow"}]'],Name:'{"text":"M16","italic":"false"}'}}
+replaceitem entity @a[tag=!Admin,tag=StartReloading,tag=ReloadingM16] weapon.mainhand carrot_on_a_stick{isGun:1b,CustomModelData:4,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 30     ","color":"yellow"},{"text":"Fire rate "},{"text":"400RPM","color":"yellow"},{"text":"     Damage "},{"text":"5HP","color":"yellow"}]'],Name:'{"text":"M16","italic":"false"}'}}
 tag @a[tag=!Admin,tag=ReloadingM16,nbt=!{SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:4}}}] add CancelReload
 execute at @a[tag=!Admin,scores={TC_M16_Ammo=0..29,TC_FireTimer=..0},nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:4}}]},nbt=!{Inventory:[{id:"minecraft:clock",tag:{CustomModelData:4}}]}] run tellraw @p {"text":"No Ammo left","color":"red"}
 clear @a[tag=!Admin,tag=StartReloading,tag=ReloadingM16] clock{CustomModelData:4} 1
@@ -152,7 +152,7 @@ execute at @a[tag=!Admin,nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_s
 execute at @a[tag=!Admin,tag=StartReloading,nbt={Inventory:[{Slot:-106b,id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:3}},{id:"minecraft:clock",tag:{CustomModelData:3}}]}] run tag @p add ReloadingAWP
 scoreboard players set @a[tag=Reloaded,tag=ReloadingAWP] TC_AWP_Ammo 10
 tag @a[tag=!Admin,tag=ReloadingAWP,tag=Reloaded] remove ReloadingAWP
-replaceitem entity @a[tag=!Admin,tag=StartReloading,tag=ReloadingAWP] weapon.mainhand carrot_on_a_stick{CustomModelData:3,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 10     ","color":"yellow"},{"text":"Fire rate "},{"text":"40RPM","color":"yellow"},{"text":"     Damage "},{"text":"30HP","color":"yellow"}]'],Name:'{"text":"AWP","italic":"false"}'}}
+replaceitem entity @a[tag=!Admin,tag=StartReloading,tag=ReloadingAWP] weapon.mainhand carrot_on_a_stick{isGun:1b,CustomModelData:3,display:{Lore:['[{"text":"Max Ammo","color":"gray"},{"text":" 10     ","color":"yellow"},{"text":"Fire rate "},{"text":"40RPM","color":"yellow"},{"text":"     Damage "},{"text":"30HP","color":"yellow"}]'],Name:'{"text":"AWP","italic":"false"}'}}
 tag @a[tag=!Admin,tag=ReloadingAWP,nbt=!{SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{CustomModelData:3}}}] add CancelReload
 execute at @a[tag=!Admin,tag=StartReloading,tag=ReloadingAWP,nbt=!{Inventory:[{id:"minecraft:clock",tag:{CustomModelData:3}}]}] run tellraw @p {"text":"No 7.62x51mm Ammo left","color":"red"}
 clear @a[tag=!Admin,tag=StartReloading,tag=ReloadingAWP] clock{CustomModelData:3} 1
